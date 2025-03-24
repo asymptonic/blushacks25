@@ -12,6 +12,7 @@ export enum Collections {
 	Otps = "_otps",
 	Superusers = "_superusers",
 	Accounts = "accounts",
+	Newsletters = "newsletters",
 	Transactions = "transactions",
 	Users = "users",
 }
@@ -90,11 +91,29 @@ export type SuperusersRecord = {
 export type AccountsRecord = {
 	created?: IsoDateString
 	description?: string
+	donors?: RecordIdString[]
+	goal?: number
 	id: string
 	name: string
 	updated?: IsoDateString
+	users?: RecordIdString[]
 }
 
+export type NewslettersRecord = {
+	account?: RecordIdString
+	author?: RecordIdString
+	content?: string
+	created?: IsoDateString
+	id: string
+	published?: boolean
+	title?: string
+	updated?: IsoDateString
+}
+
+export enum TransactionsTypeOptions {
+	"donation" = "donation",
+	"expense" = "expense",
+}
 export type TransactionsRecord = {
 	account: RecordIdString
 	amount?: number
@@ -106,9 +125,8 @@ export type TransactionsRecord = {
 	merchant_name?: string
 	timestamp?: IsoDateString
 	title: string
-	transaction_id?: string
+	type?: TransactionsTypeOptions
 	updated?: IsoDateString
-	website?: string
 }
 
 export type UsersRecord = {
@@ -131,6 +149,7 @@ export type MfasResponse<Texpand = unknown> = Required<MfasRecord> & BaseSystemF
 export type OtpsResponse<Texpand = unknown> = Required<OtpsRecord> & BaseSystemFields<Texpand>
 export type SuperusersResponse<Texpand = unknown> = Required<SuperusersRecord> & AuthSystemFields<Texpand>
 export type AccountsResponse<Texpand = unknown> = Required<AccountsRecord> & BaseSystemFields<Texpand>
+export type NewslettersResponse<Texpand = unknown> = Required<NewslettersRecord> & BaseSystemFields<Texpand>
 export type TransactionsResponse<Texpand = unknown> = Required<TransactionsRecord> & BaseSystemFields<Texpand>
 export type UsersResponse<Texpand = unknown> = Required<UsersRecord> & AuthSystemFields<Texpand>
 
@@ -143,6 +162,7 @@ export type CollectionRecords = {
 	_otps: OtpsRecord
 	_superusers: SuperusersRecord
 	accounts: AccountsRecord
+	newsletters: NewslettersRecord
 	transactions: TransactionsRecord
 	users: UsersRecord
 }
@@ -154,6 +174,7 @@ export type CollectionResponses = {
 	_otps: OtpsResponse
 	_superusers: SuperusersResponse
 	accounts: AccountsResponse
+	newsletters: NewslettersResponse
 	transactions: TransactionsResponse
 	users: UsersResponse
 }
@@ -168,6 +189,7 @@ export type TypedPocketBase = PocketBase & {
 	collection(idOrName: '_otps'): RecordService<OtpsResponse>
 	collection(idOrName: '_superusers'): RecordService<SuperusersResponse>
 	collection(idOrName: 'accounts'): RecordService<AccountsResponse>
+	collection(idOrName: 'newsletters'): RecordService<NewslettersResponse>
 	collection(idOrName: 'transactions'): RecordService<TransactionsResponse>
 	collection(idOrName: 'users'): RecordService<UsersResponse>
 }

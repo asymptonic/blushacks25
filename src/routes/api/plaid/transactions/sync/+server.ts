@@ -23,6 +23,7 @@ export async function POST({}) {
 		batch.collection('transactions').create({
 			transaction_id: transaction.transaction_id,
 			account: 'k502mv28k1mr6t6',
+			description: 'Sandbox Transaction Data Provided by Plaid (functional connection)',
 			title: 'innit',
 			amount: transaction.amount,
 			category: transaction.category?.join(','),

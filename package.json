@@ -39,8 +39,14 @@
 	},
 	"dependencies": {
 		"@number-flow/svelte": "^0.3.6",
+		"chart.js": "^4.4.8",
+		"chartjs-adapter-dayjs-4": "^1.0.4",
+		"dayjs": "^1.11.13",
+		"lucide-svelte": "^0.483.0",
+		"marked": "^15.0.7",
 		"mode-watcher": "^0.5.1",
 		"plaid": "^31.1.0",
-		"pocketbase": "^0.25.2"
+		"pocketbase": "^0.25.2",
+		"svelte-french-toast": "^1.2.0"
 	}
 }
