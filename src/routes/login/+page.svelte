@@ -15,7 +15,7 @@
 				<HandHeart color="white" size={36} />
 			</div>
 			<div class="px-5">
-				<h1 class="mt-5 flex items-center gap-5 text-3xl font-bold">Open Bank</h1>
+				<h1 class="mt-5 flex items-center gap-5 text-3xl font-bold">Clear Bank</h1>
 				<p class="mt-2 text-lg italic">A transparent way to run your non-profit</p>
 			</div>
 		</div>
