@@ -2,7 +2,6 @@
 	import { pb, use } from '$lib/pocketbase.svelte';
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
-	import toast, { Toaster } from 'svelte-french-toast';
 	import { HandHeart } from 'lucide-svelte';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
@@ -17,7 +16,6 @@
 
 	async function handleDonation(name: string, amount: number) {
 		if (name === '') {
-			toast.error('Please enter your name');
 			return;
 		}
 
@@ -31,13 +29,11 @@
 		try {
 			submitted = true;
 			const res = await pb.collection('transactions').create(data);
-			toast.success('Donation successful. Redirecting...');
 
 			setTimeout(() => goto(`/public/${page.params.id}`), 2500);
 		} catch (e) {
 			submitted = false;
 			console.log(e);
-			toast.error('Donation failed with error: ' + e);
 		}
 	}
 
@@ -69,7 +65,13 @@
 			</div>
 			<div class="mt-5">
 				<Label class="font-bold" for="">Your Name</Label>
-				<Input class="w-full" bind:value={name} type="text" placeholder="Jane Doe" />
+				<Input
+					class="w-full"
+					bind:value={name}
+					type="text"
+					placeholder="Jane Doe"
+					required={true}
+				/>
 			</div>
 
 			<Button disabled={submitted} class="mt-5 w-full cursor-pointer" type="submit">Donate</Button>

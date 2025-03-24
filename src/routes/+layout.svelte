@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { ModeWatcher, toggleMode } from 'mode-watcher';
-	import '../app.css';
-	import { Toaster } from 'svelte-french-toast';
+	import '../app.css'; 
 
 	let { children } = $props();
 </script>
@@ -16,5 +15,4 @@
 </button> -->
 <!-- <Navbar /> -->
 <ModeWatcher />
-<Toaster />
 {@render children()}
